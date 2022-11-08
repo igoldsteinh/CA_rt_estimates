@@ -1,0 +1,57 @@
+county,est_cases,est_omicorn_cases,est_other_cases,hospitalizations,icu
+Alameda,1637,721,916,53,19
+Amador,39,13,26,4,3
+Butte,152,75,77,30,1
+Calaveras,56,20,36,4,1
+Colusa,18,7,11,1,1
+Contra Costa,1043,332,711,25,9
+Del Norte,12,4,8,1,1
+El Dorado,185,65,120,7,5
+Fresno,934,306,628,139,50
+Glenn,11,3,8,1,1
+Humboldt,143,53,90,10,3
+Imperial,555,195,360,39,24
+Inyo,22,8,14,1,1
+Kern,853,341,512,90,32
+Kings,215,76,139,17,3
+Lake,42,13,29,1,1
+Lassen,7,1,6,1,1
+Los Angeles,17109,11402,5707,567,182
+Madera,152,50,102,11,4
+Marin,290,98,192,7,2
+Mariposa,14,4,10,1,1
+Mendocino,86,23,63,4,1
+Merced,236,93,143,12,13
+Modoc,2,1,2,3,1
+Mono,33,9,24,1,1
+Monterey,356,83,273,17,4
+Napa,163,70,93,6,1
+Nevada,134,44,90,5,1
+Orange,2967,1357,1610,142,56
+Placer,402,124,278,56,29
+Plumas,32,10,22,1,1
+Riverside,4051,1556,2495,233,76
+Sacramento,1669,613,1056,97,45
+San Benito,93,40,53,3,3
+San Bernardino,3676,1601,2075,302,90
+San Diego,5588,3648,1940,268,99
+San Francisco,1482,330,1152,23,14
+San Joaquin,766,266,500,57,25
+San Luis Obispo,272,112,160,12,3
+San Mateo,806,368,438,14,4
+Santa Barbara,498,188,310,25,13
+Santa Clara,1760,1120,640,86,36
+Santa Cruz,281,118,163,7,5
+Shasta,134,48,86,24,7
+Siskiyou,27,12,15,4,1
+Solano,366,141,225,21,6
+Sonoma,493,194,299,25,3
+Stanislaus,598,172,426,84,26
+Sutter,82,31,51,1,1
+Tehama,46,14,32,5,3
+Trinity,3,1,2,1,1
+Tulare,386,109,277,41,16
+Tuolumne,76,25,51,5,1
+Ventura,1181,563,618,55,19
+Yolo,217,88,129,2,1
+Yuba,91,38,53,9,4
