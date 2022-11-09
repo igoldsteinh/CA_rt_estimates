@@ -15,8 +15,5 @@ module purge
 module load R
 cd //dfs6/pub/igoldst1/CA_rt_estimates
 
-if [ $SLURM_ARRAY_TASK_ID == 1 ]; then
-sbatch --depend=afterany:$SLURM_ARRAY_JOB_ID slurm_submissions/update_estimates_3.sh
-fi
 
-Rscript scripts/fit_estimgamma.R $SLURM_ARRAY_TASK_ID
+Rscript scripts/find_overdisp_priors.R $SLURM_ARRAY_TASK_ID

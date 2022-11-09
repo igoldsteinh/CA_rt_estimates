@@ -3,8 +3,7 @@
 library(tidyverse)
 library(rstan)
 library(brms)
-options(mc.cores = parallelly::availableCores(),
-        brms.backend = "cmdstanr")
+options(mc.cores = parallelly::availableCores())
 rstan_options(auto_write = TRUE)
 
 source("src/rt_functions.R")
