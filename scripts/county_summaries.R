@@ -12,7 +12,7 @@ source(here::here("src", "rt_functions.R"))
 # file_names <- c("sender_model.rds")
 county_id_key <- read_csv("data/county_id_key.csv")
 county_names <- county_id_key$county
-county_names <- c("Alameda", "California")
+# county_names <- c("Alameda", "California")
 
 county_posteriors <- map(county_names, ~read_rds(here::here("results", "posteriors", paste0(.x, "_estimgamma_posterior.rds"))))
 # first task just look at the traces --------------------------------------
