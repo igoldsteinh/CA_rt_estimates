@@ -40,10 +40,11 @@ full_county_rt <- map2(county_names, county_id, ~read_csv(here::here("results",
                                                                "_rt_intervals", 
                                                                ".csv", "")))) %>%
              bind_rows() %>%
-             arrange(county)
+             arrange(county) %>%
+             dplyr::select(date, county, rt, .lower, .upper, .width, .point)
 
 county_rt <- full_county_rt %>%
-             filter(.width == 0.95)
+             filter(.width == 0.95) 
 
 write_csv(full_county_rt, "full_county_rt_estimates.csv")
 write_csv(county_rt, "CDPH_county_rt_estimates.csv")
