@@ -1,5 +1,6 @@
 # visualize results
 library(tidyverse)
+library(tidybayes)
 library(gridExtra)
 library(ggplot2)
 library(scales)
