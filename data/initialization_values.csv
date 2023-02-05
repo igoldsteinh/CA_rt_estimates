@@ -1,12 +1,12 @@
 county,est_cases,est_omicorn_cases,est_other_cases,hospitalizations,icu
-Alameda,1299,546,753,42,19
+Alameda,1302,549,753,42,19
 Amador,35,11,24,4,3
 Butte,136,65,71,28,1
 Calaveras,63,22,41,4,1
 Colusa,20,8,12,2,1
 Contra Costa,890,268,622,30,9
 Del Norte,10,3,7,1,1
-El Dorado,179,60,119,3,7
+El Dorado,178,59,119,3,7
 Fresno,944,293,651,151,39
 Glenn,10,3,7,1,1
 Humboldt,158,56,102,13,3
@@ -26,7 +26,7 @@ Modoc,1,1,1,3,1
 Mono,30,7,23,1,1
 Monterey,367,79,288,21,3
 Napa,138,56,82,7,1
-Nevada,118,37,81,7,1
+Nevada,117,37,80,7,1
 Orange,2513,1101,1412,142,64
 Placer,397,116,281,55,26
 Plumas,30,10,20,1,1
@@ -36,11 +36,11 @@ San Benito,85,34,51,2,3
 San Bernardino,3552,1479,2073,291,89
 San Diego,4742,2996,1746,265,94
 San Francisco,1048,220,828,26,11
-San Joaquin,682,223,459,54,27
+San Joaquin,686,224,462,54,27
 San Luis Obispo,252,98,154,9,4
 San Mateo,659,289,370,12,6
 Santa Barbara,441,159,282,29,12
-Santa Clara,1488,922,566,88,42
+Santa Clara,1483,918,565,88,42
 Santa Cruz,269,106,163,7,5
 Shasta,133,46,87,18,8
 Siskiyou,24,11,13,2,2

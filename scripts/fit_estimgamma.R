@@ -17,13 +17,18 @@ dir_create(path("results", "standiags"))
 
 # command args for array job ----------------------------------------------
 args <- commandArgs(trailingOnly=TRUE)
-indic <- as.integer(args[1])
+if (length(args) == 0) {
+  indic = 1
+} else {
+  indic <- as.integer(args[1])
+  
+}
 
 
 # code start ---------------------------------------------------------------
 
 
-set.seed(225)
+set.seed(236)
 options(mc.cores = parallelly::availableCores())
 rstan_options(auto_write = TRUE)
 
@@ -33,8 +38,10 @@ ca_data <- read_csv("data/cases_hospitalizations_by_county.csv")
 county_id_key <- read_csv("data/county_id_key.csv")
 
 county_name <- county_id_key %>% filter(id == indic) %>% pull(county)
-#create weekly data, currently using data from the week of 08/02/2020 - 01/09/2022
-county_data <- ca_data %>% filter(county == county_name) %>% 
+
+# lets try dropping the most recent data point
+county_data <- ca_data %>% 
+  filter(county == county_name) %>% 
   rename(total_cases = est_cases, 
          total_tests = est_tests)
 
@@ -45,20 +52,44 @@ overdisp_prior <- read_csv(here::here("data", overdisp_filename))
 # calculate quantile for tests
 test_quantile <- quantile(county_data$total_tests)
 
+
+# plot data ---------------------------------------------------------------
+case_plot <- county_data %>% 
+             ggplot(aes(x = date, y = total_cases)) + 
+             geom_point() + 
+             geom_line() + 
+             theme_bw()
+
+test_plot <- county_data %>% 
+  ggplot(aes(x = date, y = total_tests)) + 
+  geom_point() + 
+  geom_line() + 
+  theme_bw()
+
+pos_plot <- county_data %>% 
+  mutate(pos = total_cases/total_tests) %>%
+  ggplot(aes(x = date, y = pos)) + 
+  geom_point() + 
+  geom_line() + 
+  theme_bw()
+  
+data_plot <- case_plot + test_plot + pos_plot
+
 # fit model
 
 # choose starting points
 
 # first choose rt starting points using epiestim
 logrt_start <- get_logrtstart(county_data)
+diff_rt_start = diff(logrt_start)
 
 #next choose incidence starting points
-incid_start <- 1/0.2 * county_data$total_cases
+incid_start <- 1/0.066 * county_data$total_cases
 
 init_func <- function() list(log_incid_rate_raw = 0,
                              log_rt0_raw = 0,
-                             rho = 0.2/test_quantile[2],
-                             kappa = overdisp_prior$mean[1],
+                             rho = 0.066/test_quantile[2],
+                             kappa = overdisp_prior$mean,
                              seed_incid_one_raw =1,
                              incid = incid_start,
                              log_rt = logrt_start)
@@ -70,6 +101,54 @@ init_func <- function() list(log_incid_rate_raw = 0,
 # if you're fitting CA data, the rho prior should work well as is
 
 # there are other priors but their defaults should be fine
+my_model = stan_model("src/rt_estim_gamma.stan")
+data_length <- dim(county_data)[1]
+gen_params = c(log(7.872346) + log(1/7),
+               0.642713)
+delay_params = c(4.05, 7*0.74)
+gen_weights <- epidemia_hypoexp(data_length, gen_params)
+delay_weights <- zero_epidemia_gamma(data_length,
+                                     delay_params[1],
+                                     delay_params[2])
+
+data = list(n = data_length,
+            d = data_length,
+            w = gen_weights,
+            delay_weights = delay_weights,
+            obs = county_data$total_cases,
+            test = county_data$total_tests,
+            prev_vals = 4,
+            log_incid_rate_mean = -2,
+            log_incid_rate_sd = 0.7,
+            log_sigma_mu = -0.6,
+            log_sigma_sd = 0.3,
+            log_rho_mu = log(0.2/test_quantile[2]),
+            log_rho_sd = 0.3,
+            log_r0_mu = log(1.5),
+            log_r0_sd = 0.25,
+            kappa_mu = overdisp_prior$mean[1],
+            kappa_sd = overdisp_prior$sd[1])
+
+
+loop = TRUE
+seeds = 1:10000
+test = NULL
+attempt = 0
+while (loop == TRUE) {
+  seed = sample(seeds,1)
+  index = which(seeds == seed)
+  test = try(optimizing(my_model, data = data, seed = seed, init = init_func, verbose = FALSE), silent = TRUE)
+  seeds = seeds[-index]
+  attempt = attempt + 1
+  print(seed)
+  if (!is.null(test)) {
+    loop = FALSE
+  }
+}
+# test = optimizing(my_model, data = data, seed = 236, init = init_func, verbose = TRUE)
+
+list_init = list(test, test, test, test)
+
 county_posterior <- fit_estimgamma_model(county_data,
                                           gen_params = c(log(7.872346) + log(1/7), 
                                                          0.642713),
@@ -81,21 +160,23 @@ county_posterior <- fit_estimgamma_model(county_data,
                                           kappa_sd = overdisp_prior$sd[1],
                                          log_r0_mean = log(1.5),
                                          log_r0_sd = 0.75,
-                                          iterations = 6000,
+                                          iterations = 4000,
                                           init_func = init_func,
                                          gen_dist = "log-normal",
-                                         seed = 225,
+                                         seed = 56,
                                          thin = 3)
 
 
 rt_posterior_summary  <- summarise_realdata_rt_estimgamma(stan_posterior = county_posterior,
                                                           weekly_data = county_data, 
                                                           start_date = 1,
-                                                          include_chains = c(1,2,3)) %>%
+                                                          include_chains = c(1,2,3,4)) %>%
                         mutate(county = county_name) 
 
 
 # stan diagnostics --------------------------------------------------------
+# county_posterior <- read_rds(here::here("results", "posteriors", "id=1_Alameda_estimgamma_posterior.rds"))
+# county_name = "Alameda"
 trace <- rstan::traceplot(county_posterior, pars = "lp__") +
   ggtitle(county_name)
 
@@ -105,7 +186,7 @@ ggsave(here::here("figures", str_c(county_name, "_trace", ".pdf", sep = "")),
        height = 5)
 
 
-good_chains = c(1,2,3)
+good_chains = c(1,2,3,4)
 draws <- county_posterior %>% tidy_draws()
 
 standiags <- calc_stan_diags(draws, include_chains = good_chains)
