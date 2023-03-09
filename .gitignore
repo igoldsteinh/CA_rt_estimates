@@ -2,3 +2,117 @@
 .Rhistory
 .RData
 .Ruserdata
+figures/Alameda_trace.pdf
+figures/Amador_trace.pdf
+figures/Butte_trace.pdf
+figures/Calaveras_trace.pdf
+figures/California_trace.pdf
+figures/Colusa_trace.pdf
+figures/Contra Costa_trace.pdf
+figures/Del Norte_trace.pdf
+figures/El Dorado_trace.pdf
+figures/Fresno_trace.pdf
+figures/Glenn_trace.pdf
+figures/Humboldt_trace.pdf
+figures/Imperial_trace.pdf
+figures/Inyo_trace.pdf
+figures/Kern_trace.pdf
+figures/Kings_trace.pdf
+figures/Lake_trace.pdf
+figures/Lassen_trace.pdf
+figures/Los Angeles_trace.pdf
+figures/Madera_trace.pdf
+figures/Marin_trace.pdf
+figures/Mariposa_trace.pdf
+figures/Mendocino_trace.pdf
+figures/Merced_trace.pdf
+figures/Modoc_trace.pdf
+figures/Mono_trace.pdf
+figures/Monterey_trace.pdf
+figures/Napa_trace.pdf
+figures/Nevada_trace.pdf
+figures/Orange_trace.pdf
+figures/Placer_trace.pdf
+figures/Plumas_trace.pdf
+figures/Riverside_trace.pdf
+figures/Sacramento_trace.pdf
+figures/San Benito_trace.pdf
+figures/San Bernardino_trace.pdf
+figures/San Diego_trace.pdf
+figures/San Francisco_trace.pdf
+figures/San Joaquin_trace.pdf
+figures/San Luis Obispo_trace.pdf
+figures/San Mateo_trace.pdf
+figures/Santa Barbara_trace.pdf
+figures/Santa Clara_trace.pdf
+figures/Santa Cruz_trace.pdf
+figures/Shasta_trace.pdf
+figures/Siskiyou_trace.pdf
+figures/Solano_trace.pdf
+figures/Sonoma_trace.pdf
+figures/Stanislaus_trace.pdf
+figures/Sutter_trace.pdf
+figures/Tehama_trace.pdf
+figures/Trinity_trace.pdf
+figures/Tulare_trace.pdf
+figures/Tuolumne_trace.pdf
+figures/Ventura_trace.pdf
+figures/Yolo_trace.pdf
+figures/Yuba_trace.pdf
+data/overdisp_priors_countyid0.csv
+data/overdisp_priors_countyid1.csv
+data/overdisp_priors_countyid10.csv
+data/overdisp_priors_countyid11.csv
+data/overdisp_priors_countyid12.csv
+data/overdisp_priors_countyid13.csv
+data/overdisp_priors_countyid14.csv
+data/overdisp_priors_countyid15.csv
+data/overdisp_priors_countyid16.csv
+data/overdisp_priors_countyid17.csv
+data/overdisp_priors_countyid18.csv
+data/overdisp_priors_countyid19.csv
+data/overdisp_priors_countyid2.csv
+data/overdisp_priors_countyid20.csv
+data/overdisp_priors_countyid21.csv
+data/overdisp_priors_countyid22.csv
+data/overdisp_priors_countyid23.csv
+data/overdisp_priors_countyid24.csv
+data/overdisp_priors_countyid25.csv
+data/overdisp_priors_countyid26.csv
+data/overdisp_priors_countyid27.csv
+data/overdisp_priors_countyid28.csv
+data/overdisp_priors_countyid29.csv
+data/overdisp_priors_countyid3.csv
+data/overdisp_priors_countyid30.csv
+data/overdisp_priors_countyid31.csv
+data/overdisp_priors_countyid32.csv
+data/overdisp_priors_countyid33.csv
+data/overdisp_priors_countyid34.csv
+data/overdisp_priors_countyid35.csv
+data/overdisp_priors_countyid36.csv
+data/overdisp_priors_countyid37.csv
+data/overdisp_priors_countyid38.csv
+data/overdisp_priors_countyid39.csv
+data/overdisp_priors_countyid4.csv
+data/overdisp_priors_countyid40.csv
+data/overdisp_priors_countyid41.csv
+data/overdisp_priors_countyid42.csv
+data/overdisp_priors_countyid43.csv
+data/overdisp_priors_countyid44.csv
+data/overdisp_priors_countyid45.csv
+data/overdisp_priors_countyid46.csv
+data/overdisp_priors_countyid47.csv
+data/overdisp_priors_countyid48.csv
+data/overdisp_priors_countyid49.csv
+data/overdisp_priors_countyid5.csv
+data/overdisp_priors_countyid50.csv
+data/overdisp_priors_countyid51.csv
+data/overdisp_priors_countyid52.csv
+data/overdisp_priors_countyid53.csv
+data/overdisp_priors_countyid54.csv
+data/overdisp_priors_countyid55.csv
+data/overdisp_priors_countyid56.csv
+data/overdisp_priors_countyid6.csv
+data/overdisp_priors_countyid7.csv
+data/overdisp_priors_countyid8.csv
+data/overdisp_priors_countyid9.csv

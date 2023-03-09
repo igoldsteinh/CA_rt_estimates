@@ -125,7 +125,7 @@ data = list(n = data_length,
             log_rho_mu = log(0.2/test_quantile[2]),
             log_rho_sd = 0.3,
             log_r0_mu = log(1.5),
-            log_r0_sd = 0.25,
+            log_r0_sd = 0.75,
             kappa_mu = overdisp_prior$mean[1],
             kappa_sd = overdisp_prior$sd[1])
 
@@ -149,6 +149,7 @@ while (loop == TRUE) {
 
 list_init = list(test, test, test, test)
 
+
 county_posterior <- fit_estimgamma_model(county_data,
                                           gen_params = c(log(7.872346) + log(1/7), 
                                                          0.642713),
@@ -159,11 +160,12 @@ county_posterior <- fit_estimgamma_model(county_data,
                                           kappa_mean = overdisp_prior$mean[1],
                                           kappa_sd = overdisp_prior$sd[1],
                                          log_r0_mean = log(1.5),
-                                         log_r0_sd = 0.75,
-                                          iterations = 4000,
-                                          init_func = init_func,
+                                         log_r0_sd = 0.25,
+                                         init_func = init_func,
                                          gen_dist = "log-normal",
                                          seed = 56,
+                                         chain = 4,
+                                         iterations = 4000,
                                          thin = 3)
 
 

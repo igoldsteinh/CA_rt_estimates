@@ -57,8 +57,6 @@ parameters {
   real<lower = 0> kappa;  // overdispersion parameter for cases
   real<lower=0> exp_rate;
 
-
-  
 }
 
 transformed parameters{
@@ -88,8 +86,20 @@ transformed parameters{
   for (r in 2:n){
   
   log_rt[r] = log_rt[r-1] + diff_rt[r-1]*inv_sqrt(n) * sigma;
+  
+   // print("log_rt is ")
+   // print(log_rt[r])
+   // 
+   // print("diff_rt is ")
+   // print(diff_rt[r-1])
   } 
   
+  // print("kappa is ")
+  // print(kappa)
+  // 
+  // print("seed_incid_raw is ")
+  // print(seed_incid_raw)
+
 
   
   //putting incidence fully into latent land
@@ -200,13 +210,13 @@ model {
 
 
 }
-
-generated quantities{
-  int gen_obs[n];
-  for (t in 1:n) {
-      gen_obs[t] = neg_binomial_2_rng(rho*test[t]*delay_sum[t], kappa);
-  }
-
-}
+// 
+// generated quantities{
+//   int gen_obs[n];
+//   for (t in 1:n) {
+//       gen_obs[t] = neg_binomial_2_rng(rho*test[t]*delay_sum[t], kappa);
+//   }
+// 
+// }
 
 
