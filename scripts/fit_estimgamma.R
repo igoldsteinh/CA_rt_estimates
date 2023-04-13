@@ -39,11 +39,18 @@ county_id_key <- read_csv("data/county_id_key.csv")
 
 county_name <- county_id_key %>% filter(id == indic) %>% pull(county)
 
-# lets try dropping the most recent data point
 county_data <- ca_data %>% 
   filter(county == county_name) %>% 
   rename(total_cases = est_cases, 
          total_tests = est_tests)
+
+# we need to build in a lag of 7 days (one data point) for the statewide
+# and LA models, due to changes in reporting
+delayed_counties <- c("California", "Los Angeles")
+if (county_name %in% delayed_counties) {
+  max_date = max(county_data$date)
+  county_data <- county_data %>% filter(date < max_date)
+}
 
 # read in priors for overdispersion
 overdisp_filename <- paste0("overdisp_priors_countyid", indic, ".csv")
