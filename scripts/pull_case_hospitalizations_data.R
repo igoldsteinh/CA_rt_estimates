@@ -52,7 +52,7 @@ cases <-
   read_csv(cases_deaths_url) %>%
   mutate(date = lubridate::ymd(date),
          deaths = as.integer(deaths),
-         reported_cases = as.integer(reported_cases),
+         #reported_cases = as.integer(reported_cases),
          cases = as.integer(cases),
          positive_tests = as.integer(positive_tests),
          total_tests = as.integer(total_tests)) %>%
