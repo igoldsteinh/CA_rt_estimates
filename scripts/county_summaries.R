@@ -51,3 +51,17 @@ write_csv(county_rt, "CDPH_county_rt_estimates.csv")
 
 
 
+
+# local fix ---------------------------------------------------------------
+
+full_county_rt <- read_csv(here::here("full_county_rt_estimates.csv"))
+
+reduced_full_county <- full_county_rt %>% filter(county != "Mariposa")
+
+write_csv(reduced_full_county, here::here("full_county_rt_estimates.csv"))
+
+county_rt <- read_csv(here::here("CDPH_county_rt_estimates.csv"))
+
+reduced_county <- county_rt %>% filter(county != "Mariposa")
+
+write_csv(reduced_county, here::here("CDPH_county_rt_estimates.csv"))

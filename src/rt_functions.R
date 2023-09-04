@@ -190,7 +190,7 @@ rt_metrics<- function(data, value, upper, lower) {
 
 
 # use epiestim to choose initial conditions for rt ------------------------
-
+# data = county_data
 get_logrtstart <- function(data,
                            window = 1, 
                            GI_mean = 11.5/7

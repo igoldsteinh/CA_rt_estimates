@@ -190,6 +190,7 @@ county_id_key <-
   select(id, county)
 
 ca_dat <- dat %>%
+          filter(county != "Los Angeles" & county != "Mariposa") %>% 
           group_by(date, time) %>%
           summarise(cases = sum(cases),
                     est_cases = sum(est_cases),
@@ -224,3 +225,5 @@ write_csv(county_id_key, "data/county_id_key.csv")
 if (dir_exists(results_dir)) {
   dir_delete(results_dir)
 }
+
+la_dat <- dat %>% filter(county == "Los Angeles")

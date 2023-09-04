@@ -18,7 +18,7 @@ dir_create(path("results", "standiags"))
 # command args for array job ----------------------------------------------
 args <- commandArgs(trailingOnly=TRUE)
 if (length(args) == 0) {
-  indic = 1
+  indic = 18
 } else {
   indic <- as.integer(args[1])
   
@@ -46,10 +46,10 @@ county_data <- ca_data %>%
 
 # we need to build in a lag of 7 days (one data point) for the statewide
 # and LA models, due to changes in reporting
-delayed_counties <- c("California", "Los Angeles")
+delayed_counties <- c("Los Angeles")
 if (county_name %in% delayed_counties) {
   max_date = max(county_data$date)
-  county_data <- county_data %>% filter(date < max_date)
+  county_data <- county_data %>% filter(date <= max_date - ddays(6)) 
 }
 
 # read in priors for overdispersion
@@ -87,8 +87,9 @@ data_plot <- case_plot + test_plot + pos_plot
 # choose starting points
 
 # first choose rt starting points using epiestim
-logrt_start <- get_logrtstart(county_data)
-diff_rt_start = diff(logrt_start)
+county_data$time <- as.integer(county_data$time)
+# logrt_start <- get_logrtstart(county_data)
+# diff_rt_start = diff(logrt_start)
 
 #next choose incidence starting points
 incid_start <- 1/0.066 * county_data$total_cases
@@ -98,8 +99,7 @@ init_func <- function() list(log_incid_rate_raw = 0,
                              rho = 0.066/test_quantile[2],
                              kappa = overdisp_prior$mean,
                              seed_incid_one_raw =1,
-                             incid = incid_start,
-                             log_rt = logrt_start)
+                             incid = incid_start)
 # gen params are the generation time parameters, first one is the latent period rate
 # second is the infectious period rate (scaled by 7 becuase we're using weeks)
 # delay_params are for a gamma, right now I'm having it just be the latent period

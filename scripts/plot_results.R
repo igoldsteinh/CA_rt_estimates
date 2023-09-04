@@ -34,7 +34,7 @@ make_rt_plot <- function(target_place_name) {
     scale_y_continuous("Rt", label = comma) +
     scale_x_date(name = "Date") +
     ggtitle(str_c(target_place_name %>% str_to_title(), ifelse(target_place_name != "California", "County", ""), sep = " "),
-            subtitle = str_c("Estimated", max(rt_results$date), sep = " ")) +
+            subtitle = str_c("Estimated", max(rt_results$date, na.rm = TRUE), sep = " ")) +
     my_theme
 }
 
