@@ -18,7 +18,7 @@ dir_create(path("results", "standiags"))
 # command args for array job ----------------------------------------------
 args <- commandArgs(trailingOnly=TRUE)
 if (length(args) == 0) {
-  indic = 18
+  indic = 21
 } else {
   indic <- as.integer(args[1])
   
@@ -49,7 +49,7 @@ county_data <- ca_data %>%
 delayed_counties <- c("Los Angeles")
 if (county_name %in% delayed_counties) {
   max_date = max(county_data$date)
-  county_data <- county_data %>% filter(date <= max_date - ddays(6)) 
+  county_data <- county_data %>% filter(date < max_date - ddays(7)) 
 }
 
 # read in priors for overdispersion
@@ -172,7 +172,7 @@ county_posterior <- fit_estimgamma_model(county_data,
                                          gen_dist = "log-normal",
                                          seed = 56,
                                          chain = 4,
-                                         iterations = 4000,
+                                         iterations = 6000,
                                          thin = 3)
 
 

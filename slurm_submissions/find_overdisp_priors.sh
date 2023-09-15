@@ -13,7 +13,7 @@
 
 module purge
 module load R
-cd //dfs6/pub/igoldst1/CA_rt_estimates
+cd //pub/igoldst1/CA_rt_estimates
 
 
 Rscript scripts/find_overdisp_priors.R $SLURM_ARRAY_TASK_ID

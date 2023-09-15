@@ -12,7 +12,7 @@
 
 module purge
 module load R
-cd //dfs6/pub/igoldst1/CA_rt_estimates
+cd //pub/igoldst1/CA_rt_estimates
 
-R CMD BATCH --no-save scripts/county_summaries.R
+Rscript scripts/county_summaries.R
 

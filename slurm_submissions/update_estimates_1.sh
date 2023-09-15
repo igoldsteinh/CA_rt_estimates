@@ -12,7 +12,7 @@
 
 module purge
 module load R
-cd //dfs6/pub/igoldst1/CA_rt_estimates
+cd //pub/igoldst1/CA_rt_estimates
 
 Rscript scripts/pull_case_hospitalizations_data.R
 

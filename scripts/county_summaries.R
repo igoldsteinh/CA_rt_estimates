@@ -28,7 +28,7 @@ full_stan_diag <- map2(county_names, county_id, ~read_csv(here::here("results",
                                                                  ".csv", 
                                                                  "")))) %>%
                   bind_rows()
-
+print(full_stan_diag)
 write_csv(full_stan_diag, here::here("results", "full_stan_diag.csv"))
 # create final rt frame ---------------------------------------------------
 full_county_rt <- map2(county_names, county_id, ~read_csv(here::here("results",
@@ -45,23 +45,9 @@ full_county_rt <- map2(county_names, county_id, ~read_csv(here::here("results",
 
 county_rt <- full_county_rt %>%
              filter(.width == 0.95) 
-
+print("hello")
 write_csv(full_county_rt, "full_county_rt_estimates.csv")
 write_csv(county_rt, "CDPH_county_rt_estimates.csv")
 
 
 
-
-# local fix ---------------------------------------------------------------
-
-full_county_rt <- read_csv(here::here("full_county_rt_estimates.csv"))
-
-reduced_full_county <- full_county_rt %>% filter(county != "Mariposa")
-
-write_csv(reduced_full_county, here::here("full_county_rt_estimates.csv"))
-
-county_rt <- read_csv(here::here("CDPH_county_rt_estimates.csv"))
-
-reduced_county <- county_rt %>% filter(county != "Mariposa")
-
-write_csv(reduced_county, here::here("CDPH_county_rt_estimates.csv"))

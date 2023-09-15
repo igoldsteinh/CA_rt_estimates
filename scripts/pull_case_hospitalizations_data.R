@@ -225,5 +225,3 @@ write_csv(county_id_key, "data/county_id_key.csv")
 if (dir_exists(results_dir)) {
   dir_delete(results_dir)
 }
-
-la_dat <- dat %>% filter(county == "Los Angeles")

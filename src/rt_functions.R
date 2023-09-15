@@ -6,8 +6,8 @@ library(truncnorm)
 library(rstan)
 library(lubridate)
 library(brms)
-library(epidemia)
-library(rstanarm)
+# library(epidemia)
+# library(rstanarm)
 library(sdprisk)
 
 # Create automated process for choosing kappa parameter from a spl --------
@@ -190,7 +190,7 @@ rt_metrics<- function(data, value, upper, lower) {
 
 
 # use epiestim to choose initial conditions for rt ------------------------
-# data = county_data
+
 get_logrtstart <- function(data,
                            window = 1, 
                            GI_mean = 11.5/7
