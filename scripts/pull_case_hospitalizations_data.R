@@ -190,7 +190,7 @@ county_id_key <-
   select(id, county)
 
 ca_dat <- dat %>%
-          filter(county != "Los Angeles" & county != "Mariposa") %>% 
+          filter(county != "Los Angeles" & county != "Mariposa" & county != "Tehama") %>% 
           group_by(date, time) %>%
           summarise(cases = sum(cases),
                     est_cases = sum(est_cases),
