@@ -9,7 +9,7 @@
 #SBATCH -o update_estimates_2-%A-%a.out
 #SBATCH --mail-type=begin,end
 #SBATCH --mail-user=igoldst1@uci.edu
-#SBATCH --array=36-39,40-41
+#SBATCH --array=0-56
 module purge
 module load R
 cd //pub/igoldst1/CA_rt_estimates
