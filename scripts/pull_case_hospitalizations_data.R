@@ -134,9 +134,11 @@ dat <-
          est_omicron_tests = prop_omicron_cases * est_tests,
          est_other_tests = (1- prop_omicron_cases) * est_tests) %>%
   mutate(lump = floor(as.numeric(date - min(date)) / time_interval_in_days) + 1) %>%
+  group_by(lump) %>%
+  mutate(date = last(date)) %>% 
   group_by(lump, county) %>%
   summarize(time = lump[1] * time_interval_in_days / 7,
-            date = last(date),
+            date = date,
             cases = sum(cases),
             est_cases = sum(est_cases),
             est_omicron_cases = round(sum(est_omicron_cases)),
