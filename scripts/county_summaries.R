@@ -15,7 +15,7 @@ source(here::here("src", "rt_functions.R"))
 
 # county_names <- c("Alameda")
 # file_names <- c("sender_model.rds")
-county_id_key <- read_csv("data/county_id_key.csv")
+county_id_key <- read_csv("data/county_id_key.csv") %>% filter(county != "Mariposa" & county != "Trinity")
 county_names <- county_id_key$county
 county_id <- county_id_key$id
 # county_names <- c( "California")

@@ -18,7 +18,7 @@ dir_create(path("results", "standiags"))
 # command args for array job ----------------------------------------------
 args <- commandArgs(trailingOnly=TRUE)
 if (length(args) == 0) {
-  indic = 21
+  indic = 18
 } else {
   indic <- as.integer(args[1])
   
@@ -170,7 +170,7 @@ county_posterior <- fit_estimgamma_model(county_data,
                                          log_r0_sd = 0.25,
                                          init_func = init_func,
                                          gen_dist = "log-normal",
-                                         seed = 56,
+                                         seed = indic,
                                          chain = 4,
                                          iterations = 6000,
                                          thin = 3)

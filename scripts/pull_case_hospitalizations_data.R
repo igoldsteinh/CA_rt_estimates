@@ -88,7 +88,7 @@ full_dat <- full_join(cases, hosp) %>%
 
 time_interval_in_days <- 7
 
-earliest_date_elligible_to_report <- ymd("2021-12-12")
+earliest_date_elligible_to_report <- ymd("2023-03-05")
 latest_date <- max(full_dat$date, na.rm = T)
 # last_date_to_report <- latest_date - 10
 last_date_to_report <- latest_date - 2
@@ -216,6 +216,7 @@ ca_dat <- dat %>%
 
 dat <- bind_rows(dat, ca_dat)
 
+dat <- distinct(dat)
 ca_id <- data.frame("id" = 0, "county" = "California")
 
 county_id_key <- bind_rows(county_id_key, ca_id)
